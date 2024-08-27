@@ -14,6 +14,26 @@
    <string>LPG</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
+
+   <!-- Campo para definir o spacing -->
+   <item>
+    <widget class="QWidget" name="spacingWidget">
+     <layout class="QHBoxLayout" name="spacingLayout">
+      <item>
+       <widget class="QLabel" name="spacingLabel">
+        <property name="text">
+         <string>Spacing in x=y=z in cm for voxel:</string>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLineEdit" name="spacingLineEdit"/>
+      </item>
+     </layout>
+    </widget>
+   </item>
+
+   <!-- Botão Generate -->
    <item>
     <widget class="QPushButton" name="generateButton">
      <property name="text">
@@ -21,8 +41,10 @@
      </property>
     </widget>
    </item>
+   
   </layout>
  </widget>
  <resources/>
  <connections/>
 </ui>
+
