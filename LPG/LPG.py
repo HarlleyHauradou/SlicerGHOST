@@ -8,11 +8,11 @@ import numpy as np
 class LPG(ScriptedLoadableModule):
     def __init__(self, parent):
         ScriptedLoadableModule.__init__(self, parent)
-        parent.title = "LPG"
-        parent.categories = ["MCNP"]
+        parent.title = "Lattice Phantom Generate"
+        parent.categories = ["Monte Carlo"]
         parent.dependencies = []
         parent.contributors = ["Harlley Haurado, Pala Salvatice, Mirta Berdeguez e Ademir da Silva"] # Substitua pelo seu nome
-        parent.helpText = """This plugin generate a mash phantom from a 3D imagem for MCNP code called phantom.inp"""
+        parent.helpText = """This plugin generate a lattice phantom from a 3D imagem for MCNP code called phantom.inp"""
         parent.acknowledgementText = """""" # Deixe vazio ou adicione créditos
 
 class LPGWidget(ScriptedLoadableModuleWidget):
@@ -28,8 +28,16 @@ class LPGWidget(ScriptedLoadableModuleWidget):
         return os.path.join(os.path.dirname(__file__), 'Resources', filename)
 
     def onGenerateButtonClicked(self):
-        segmentationNode = slicer.util.getNode('Segmentation')
-        
+        # Obter o primeiro nó que seja um volume de imagem (tipo vtkMRMLScalarVolumeNode)
+        volumeNode = None
+        for node in slicer.mrmlScene.GetNodesByClass("vtkMRMLScalarVolumeNode"):
+            volumeNode = node
+            break
+
+        if not volumeNode:
+            slicer.util.errorDisplay("Image volume not find.")
+            return
+
         # Captura o valor do campo spacingLineEdit
         try:
             spacingValue = float(self.ui.spacingLineEdit.text)
@@ -37,35 +45,64 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             slicer.util.errorDisplay("Please enter a valid number for spacing.")
             return
 
+        # Reamostrar o volume usando o módulo de Reamostragem
+        resampledVolumeNode = self.resampleVolume(volumeNode, spacingValue)
+
+        segmentationNode = slicer.util.getNode('Segmentation')
         if not segmentationNode:
-            slicer.util.errorDisplay("Segmentação não encontrada.")
+            slicer.util.errorDisplay("Segmentation not find.")
             return
 
-        saveDirectory = qt.QFileDialog.getExistingDirectory(None, "Selecione o diretório para salvar o arquivo phantom.inp")
+        saveDirectory = qt.QFileDialog.getExistingDirectory(None, "Select the directory to save the phantom.inp.")
         if not saveDirectory:
-            slicer.util.errorDisplay("Nenhum diretório selecionado.")
+            slicer.util.errorDisplay("No directories selected.")
             return
 
-        voxelArray, segmentNames = self.getVoxelData(segmentationNode)
+        voxelArray, segmentNames = self.getVoxelData(segmentationNode, resampledVolumeNode)
         filePath = os.path.join(saveDirectory, 'phantom.inp')
 
         if voxelArray is not None:
             self.saveAsMCNPLattice(voxelArray, segmentNames, filePath, spacingValue)
-            slicer.util.infoDisplay(f"Arquivo salvo com sucesso em: {filePath}")
+            slicer.util.infoDisplay(f"File saved successfully in: {filePath}")
         else:
-            slicer.util.errorDisplay("Falha ao gerar a matriz de voxels.")
+            slicer.util.errorDisplay("Failed to generate voxel matrix.")
 
-    def getVoxelData(self, segmentationNode):
+    def resampleVolume(self, inputVolumeNode, spacingValue):
+        """
+        Reamostra o volume de entrada usando o módulo Resample Scalar Volume.
+        """
+        # Criar nó de volume de saída
+        outputVolumeNode = slicer.mrmlScene.AddNewNodeByClass("vtkMRMLScalarVolumeNode", "ResampledVolume")
+
+        # Parâmetros de reamostragem
+        parameters = {
+            "InputVolume": inputVolumeNode.GetID(), 
+            "OutputVolume": outputVolumeNode.GetID(),
+            "outputPixelSpacing": f"{spacingValue*10},{spacingValue*10},{spacingValue*10}", 
+            "interpolationType": "lanczos"  
+        }
+
+        # Executar o módulo de reamostragem
+        slicer.cli.runSync(slicer.modules.resamplescalarvolume, None, parameters)
+        
+        # Verificar se a reamostragem foi bem-sucedida
+        if not outputVolumeNode.GetImageData():
+            slicer.util.errorDisplay("Failed to resample volume.")
+            return None
+
+        # Retorna o nó de volume de saída reamostrado
+        return outputVolumeNode
+
+
+    def getVoxelData(self, segmentationNode, resampledVolumeNode):
         """
         Extrai os dados voxel da segmentação como uma matriz numpy e retorna os nomes dos segmentos.
         """
-        segmentIds = vtk.vtkStringArray()  # Cria uma nova instância de vtkStringArray
+        segmentIds = vtk.vtkStringArray() # Cria uma nova instância de vtkStringArray
         segmentationNode.GetSegmentation().GetSegmentIDs(segmentIds)
 
         segmentNames = []
         voxelArray = None
-
-        print(f"Total de segmentos: {segmentIds.GetNumberOfValues()}")  # Debug
 
         for i in range(segmentIds.GetNumberOfValues()):
             segmentId = segmentIds.GetValue(i)
@@ -73,8 +110,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             segmentNames.append(segment.GetName())
 
             # Converter a segmentação atual para um array numpy
-            labelmapArray = slicer.util.arrayFromSegmentBinaryLabelmap(segmentationNode, segmentId)
-            print(f"Segmento {i} - Nome: {segment.GetName()}, Shape: {labelmapArray.shape}")  # Debug
+            labelmapArray = slicer.util.arrayFromSegmentBinaryLabelmap(segmentationNode, segmentId, resampledVolumeNode)
 
             if voxelArray is None:
                 voxelArray = np.zeros_like(labelmapArray)
