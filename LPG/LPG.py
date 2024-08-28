@@ -157,6 +157,9 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             file.write("\n")
             file.write("c --- Surface Cards ---\n")
             file.write('c\n')
+            file.write("c --- Data Cards ---\n")
+            file.write("mode p e\n")
+            file.write('c\n')
             file.write('c --- Voxel Resolution ---\n')
             file.write('c\n')
             file.write(f'501 px {spacingValue}\n')
@@ -170,6 +173,12 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             # Adicionar as definições dos materiais no final            
             file.write("c --- Material Definitions ---\n")
             file.write('c\n')
+            file.write('c Air (Dry, Near Sea Level) Density (g/cm³) = 0.001205\n')
+            file.write('m1      6000.   -0.000124\n') 
+            file.write('        7000.   -0.755268\n')
+            file.write('        8000.   -0.231781\n')
+            file.write('       18000.   -0.012827\n')
+            file.write('c\n')
             for idx, segmentName in enumerate(segmentNames, start=2):
                 material_info = materials_dict.get(segmentName)
                 if material_info:
@@ -181,14 +190,14 @@ class LPGWidget(ScriptedLoadableModuleWidget):
                         else:
                             file.write("        " + line + '\n')  # Adiciona 8 espaços em branco nas linhas subsequentes
                             file.write('c\n')
-            file.write("c \n")
 
-        
-            file.write("c --- Data Cards ---\n")
-            file.write("mode p e\n")
+            # Adicionar os tally F6 para cada material
+            file.write("c --- Tally f6 Energy Deposition ---\n")
+            self.addTallyF6(file, segmentNames)
+
             
-            file.write("\n")
             file.write("c --- End of File ---\n")
+            file.write('')
 
     def compress_line(self, row):
         """
@@ -261,3 +270,14 @@ class LPGWidget(ScriptedLoadableModuleWidget):
                 }
 
         return materials
+
+    def addTallyF6(self, file, segmentNames):
+            """
+            Adiciona as entradas de tally F6 para cada material no arquivo MCNP.
+            """
+            for idx, segmentName in enumerate(segmentNames, start=2):
+                file.write(f"c\n")
+                file.write(f"fc{idx}6 {segmentName}\n")
+                # Adiciona o tally para todas as células associadas ao material
+                cell_numbers = [str(cell_id) for cell_id in range((idx - 1), idx)]
+                file.write(f"f{idx}6:p (({' '.join(cell_numbers)}) < {1000}) T\n")
