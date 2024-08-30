@@ -6,34 +6,85 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>400</width>
-    <height>300</height>
+    <width>377</width>
+    <height>172</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>LPG</string>
   </property>
   <layout class="QVBoxLayout" name="verticalLayout">
-
-   <!-- Campo para definir o spacing -->
    <item>
-    <widget class="QWidget" name="spacingWidget">
-     <layout class="QHBoxLayout" name="spacingLayout">
-      <item>
-       <widget class="QLabel" name="spacingLabel">
-        <property name="text">
-         <string>Spacing in x=y=z in cm for voxel:</string>
-        </property>
-       </widget>
-      </item>
-      <item>
-       <widget class="QLineEdit" name="spacingLineEdit"/>
-      </item>
-     </layout>
-    </widget>
+    <layout class="QVBoxLayout" name="verticalLayout_2">
+     <item>
+      <widget class="QLabel" name="spacingLabel">
+       <property name="text">
+        <string>Spacing voxel (cm):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayout">
+       <item>
+        <widget class="QLabel" name="x">
+         <property name="text">
+          <string>x:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="xSpacingLineEdit"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="y">
+         <property name="text">
+          <string>Y:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="ySpacingLineEdit"/>
+       </item>
+       <item>
+        <widget class="QLabel" name="z">
+         <property name="text">
+          <string>Z:</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QLineEdit" name="zSpacingLineEdit"/>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>250</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+      </layout>
+     </item>
+    </layout>
    </item>
-
-   <!-- Botão Generate -->
+   <item>
+    <spacer name="verticalSpacer">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>40</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
    <item>
     <widget class="QPushButton" name="generateButton">
      <property name="text">
@@ -41,10 +92,8 @@
      </property>
     </widget>
    </item>
-   
   </layout>
  </widget>
  <resources/>
  <connections/>
 </ui>
-
