@@ -40,10 +40,14 @@ class LPGWidget(ScriptedLoadableModuleWidget):
 
         # Captura o valor do campo spacingLineEdit
         try:
-            spacingValue = float(self.ui.spacingLineEdit.text)
+            xSpacingValue = float(self.ui.xSpacingLineEdit.text)
+            ySpacingValue = float(self.ui.ySpacingLineEdit.text)
+            zSpacingValue = float(self.ui.zSpacingLineEdit.text)
         except ValueError:
             slicer.util.errorDisplay("Please enter a valid number for spacing.")
             return
+        
+        spacingValue = [xSpacingValue, ySpacingValue, zSpacingValue]
 
         # Reamostrar o volume usando o módulo de Reamostragem
         resampledVolumeNode = self.resampleVolume(volumeNode, spacingValue)
@@ -67,6 +71,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
         else:
             slicer.util.errorDisplay("Failed to generate voxel matrix.")
 
+
     def resampleVolume(self, inputVolumeNode, spacingValue):
         """
         Reamostra o volume de entrada usando o módulo Resample Scalar Volume.
@@ -78,7 +83,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
         parameters = {
             "InputVolume": inputVolumeNode.GetID(), 
             "OutputVolume": outputVolumeNode.GetID(),
-            "outputPixelSpacing": f"{spacingValue*10},{spacingValue*10},{spacingValue*10}", 
+            "outputPixelSpacing": f"{spacingValue[0]*10},{spacingValue[1]*10},{spacingValue[2]*10}", 
             "interpolationType": "lanczos"  
         }
 
@@ -116,7 +121,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
                 voxelArray = np.zeros_like(labelmapArray)
 
             # Preencher voxelArray com o índice do segmento (i+1) onde o valor da labelmapArray é maior que 0
-            voxelArray[labelmapArray > 0] = i + 1
+            voxelArray[labelmapArray > 0] = i + 2
 
         return voxelArray, segmentNames
 
@@ -133,8 +138,8 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             file.write("c ---       Developed by Harlley Hauradou       ---\n")
             file.write("c --- Cell Cards ---\n")
             file.write("1000 0 1 -2 3 -4 5 -6 fill=999 imp:p,e=1 $ $ cell containing the phantom\n")
-            file.write("2000 0 -20 1 -40 3 -50 -6 lat=1 u=999 imp:p,e=1\n")
-            file.write(f"     fill=0:{voxelArray.shape[0]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[2]-1}\n")
+            file.write("2000 0 -20 1 -40 3 50 -6 lat=1 u=999 imp:p,e=1\n")
+            file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
             
             # Escrever a matriz voxel no formato lattice
             fill_lines = self.create_fill_lines(voxelArray)
@@ -143,7 +148,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             
             # Definição de materiais e células
             file.write("c --- Universe Definitions ---\n")
-            file.write("1 1 -1.205e-3 -20 1 -40 3 -50 -6 u=1 IMP:P=1 IMP:E=1 $ Air surrounding the phantom\n")
+            file.write("1 1 -1.205e-3 -20 1 -40 3 50 -6 u=1 IMP:P=1 IMP:E=1 $ Air surrounding the phantom\n")
             
             for idx, segmentName in enumerate(segmentNames, start=2):
                 material_info = materials_dict.get(segmentName)
@@ -159,14 +164,14 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             file.write('c --- Voxel Resolution ---\n')
             file.write('c\n')
             file.write(f'1 px 0\n')
-            file.write(f'2 px {spacingValue*voxelArray.shape[0]}\n')
-            file.write(f'3 py 0\n')
-            file.write(f'4 py {spacingValue*voxelArray.shape[1]}\n')
-            file.write(f'5 pz 0\n')
-            file.write(f'6 pz {spacingValue*voxelArray.shape[2]}\n')
-            file.write(f'20 px {spacingValue}\n')
-            file.write(f'40 py {spacingValue}\n')
-            file.write(f'50 pz {spacingValue}\n')
+            file.write(f'2 px {spacingValue[0] * voxelArray.shape[0]}\n')
+            file.write(f'3 py 0\n') 
+            file.write(f'4 py {spacingValue[1] * voxelArray.shape[1]}\n')
+            file.write(f'5 pz 0\n') 
+            file.write(f'6 pz {spacingValue[2] * voxelArray.shape[2]}\n')
+            file.write(f'20 px {spacingValue[0]}\n')
+            file.write(f'40 py {spacingValue[1]}\n')
+            file.write(f'50 pz {spacingValue[2]}\n')
             file.write("c \n")
             file.write(' \n')
 
@@ -177,10 +182,10 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             file.write("c --- Material Definitions ---\n")
             file.write('c\n')
             file.write('c Air (Dry, Near Sea Level) Density (g/cm³) = 0.001205\n')
-            file.write('m1      6000.   -0.000124\n') 
-            file.write('        7000.   -0.755268\n')
-            file.write('        8000.   -0.231781\n')
-            file.write('       18000.   -0.012827\n')
+            file.write('m1       6000.    -0.000124\n') 
+            file.write('         7000.    -0.755268\n')
+            file.write('         8000.    -0.231781\n')
+            file.write('         18000.   -0.012827\n')
             file.write('c\n')
             for idx, segmentName in enumerate(segmentNames, start=2):
                 material_info = materials_dict.get(segmentName)
@@ -191,8 +196,8 @@ class LPGWidget(ScriptedLoadableModuleWidget):
                             file.write(f'c {segmentName} Density (g/cm³) = {material_info["density"]}\n')
                             file.write(line.replace('mx', f'm{idx}') + '\n')  # Linha com 'mx' sem deslocamento
                         else:
-                            file.write("        " + line + '\n')  # Adiciona 8 espaços em branco nas linhas subsequentes
-                        file.write('c\n')
+                            file.write("         " + line + '\n')  # Adiciona 9 espaços em branco nas linhas subsequentes
+                    file.write('c\n')
 
             # Adicionar os tally F6 para cada material
             file.write("c --- Tally f6 Energy Deposition ---\n")
@@ -211,7 +216,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
         column_count = 6
 
         # Flatten the 3D voxel array in order of i, j, k
-        flattened_voxels = voxelArray.flatten(order='F')
+        flattened_voxels = voxelArray.flatten()
 
         # Compress the line with MCNP's 'nR' format
         current_value = 1 if flattened_voxels[0] == 0 else flattened_voxels[0]
@@ -264,13 +269,13 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             for line in lines:
                 line = line.strip()
 
-                if line.startswith('c '):  # Indica o início de um novo material
+                if line.startswith('c ') and 'Density' in line:  # Indica o início de um novo material
                     if current_material is not None:
                         materials[current_material] = {
                             'density': density,
                             'data': material_data
                         }
-                    current_material = line.split(' ')[1]  # Nome do material
+                    current_material = ' '.join(line.split(' ')[1:-4])  # Nome do material
                     density_str = line.split('=')[-1].strip()  # Obtém o valor da densidade
                     density = float(density_str)
                     material_data = []
