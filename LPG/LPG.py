@@ -145,16 +145,19 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             fill_lines = self.create_fill_lines(voxelArray)
             for line in fill_lines:
                 file.write(line + "\n")
+            file.write('3000 0 #1000 imp:p,e=1\n')
             
             # Definição de materiais e células
             file.write("c --- Universe Definitions ---\n")
             file.write("1 1 -1.205e-3 -20 1 -40 3 50 -6 u=1 IMP:P=1 IMP:E=1 $ Air surrounding the phantom\n")
-            
+            file.write('3001 0 #1 u=1 imp:p,e=1\n')
+
             for idx, segmentName in enumerate(segmentNames, start=2):
                 material_info = materials_dict.get(segmentName)
                 if material_info:
                     density = material_info['density']
                     file.write(f"{idx} like 1 but mat={idx} rho=-{density:.6f} u={idx} IMP:P=1 IMP:E=1 $ {segmentName}\n")
+                    file.write(f'300{idx} 0 #{idx} u={idx} imp:p,e=1\n')
                 else:
                     print(f'Material for segment {segmentName} not found in materials.txt')
             
@@ -164,11 +167,11 @@ class LPGWidget(ScriptedLoadableModuleWidget):
             file.write('c --- Voxel Resolution ---\n')
             file.write('c\n')
             file.write(f'1 px 0\n')
-            file.write(f'2 px {spacingValue[0] * voxelArray.shape[0]}\n')
+            file.write(f'2 px {spacingValue[0] * voxelArray.shape[2]}\n')
             file.write(f'3 py 0\n') 
             file.write(f'4 py {spacingValue[1] * voxelArray.shape[1]}\n')
             file.write(f'5 pz 0\n') 
-            file.write(f'6 pz {spacingValue[2] * voxelArray.shape[2]}\n')
+            file.write(f'6 pz {spacingValue[2] * voxelArray.shape[0]}\n')
             file.write(f'20 px {spacingValue[0]}\n')
             file.write(f'40 py {spacingValue[1]}\n')
             file.write(f'50 pz {spacingValue[2]}\n')
@@ -215,6 +218,9 @@ class LPGWidget(ScriptedLoadableModuleWidget):
         current_line = "     "  # Inicia na coluna 6
         column_count = 6
 
+        # Inverter a ordem das fatias em Z (primeira dimensão)
+        voxelArray = voxelArray[::-1, :, :]
+
         # Flatten the 3D voxel array in order of i, j, k
         flattened_voxels = voxelArray.flatten()
 
@@ -255,6 +261,7 @@ class LPGWidget(ScriptedLoadableModuleWidget):
         
         lines.append(current_line)
         return lines
+
     
 
     # Ler o arquivo de materiais e converte em um dicionário
