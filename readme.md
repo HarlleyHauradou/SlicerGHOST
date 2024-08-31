@@ -18,9 +18,7 @@ To install the GHOST plugin, follow these steps:
 1. **Download the Plugin**: Clone the repository from GitHub.
 
    ```
-   bash
-   Copiar código
-   git clone https://github.com/username/LPG-3DSlicer-Plugin.git
+   git clone https://github.com/HarlleyHauradou/SlicerGHOST.git
    ```
 
 2. **Add the Plugin to 3D Slicer**:
