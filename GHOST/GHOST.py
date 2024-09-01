@@ -22,7 +22,18 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
         uiWidget = slicer.util.loadUI(self.resourcePath('UI/GHOST.ui'))
         self.layout.addWidget(uiWidget)
         self.ui = slicer.util.childWidgetVariables(uiWidget)
+
+        # Conecta os botões ao seus respectivos métodos
         self.ui.generateButton.connect('clicked(bool)', self.onGenerateButtonClicked)
+        self.ui.segmentEditorButton.connect('clicked(bool)', self.openSegmentEditor)
+        self.ui.renameButton.connect('clicked(bool)', self.renameSegment)
+
+        # Preenche a lista de segmentos e materiais
+        self.populateSegmentList()
+        self.populateMaterialComboBox()
+
+        # Conecta a seleção do segmento ao método para exibir apenas o segmento selecionado
+        self.ui.segmentListWidget.currentItemChanged.connect(self.showOnlySelectedSegment)
 
     def resourcePath(self, filename):
         return os.path.join(os.path.dirname(__file__), 'Resources', filename)
@@ -328,3 +339,56 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
                 # Adiciona o tally para todas as células associadas ao material
                 cell_numbers = [str(cell_id) for cell_id in range((idx - 1), idx)]
                 file.write(f"f{idx}6:p (({' '.join(cell_numbers)}) < {1000})\n")
+
+    def openSegmentEditor(self):
+        """
+        Abre o módulo Segment Editor no 3D Slicer.
+        """
+        slicer.util.selectModule('SegmentEditor')
+
+    def populateSegmentList(self):
+        """
+        Popula a lista de segmentos no widget.
+        """
+        segmentationNode = slicer.util.getNode('Segmentation')
+        if segmentationNode:
+            segmentIds = vtk.vtkStringArray()
+            segmentationNode.GetSegmentation().GetSegmentIDs(segmentIds)
+            for i in range(segmentIds.GetNumberOfValues()):
+                segmentId = segmentIds.GetValue(i)
+                segment = segmentationNode.GetSegmentation().GetSegment(segmentId)
+                self.ui.segmentListWidget.addItem(segment.GetName())
+
+    def populateMaterialComboBox(self):
+        """
+        Popula o combobox com os materiais disponíveis no banco de dados.
+        """
+        materials_dict = self.load_materials(self.resourcePath('database/materials.txt'))
+        for material_name in materials_dict.keys():
+            self.ui.materialComboBox.addItem(material_name)
+
+    def renameSegment(self):
+        """
+        Renomeia o segmento selecionado para o nome do material escolhido no combobox.
+        """
+        selectedSegment = self.ui.segmentListWidget.currentItem()
+        if selectedSegment:
+            newMaterialName = self.ui.materialComboBox.currentText
+            segmentationNode = slicer.util.getNode('Segmentation')
+            segmentId = segmentationNode.GetSegmentation().GetSegmentIdBySegmentName(selectedSegment.text())
+            segmentationNode.GetSegmentation().GetSegment(segmentId).SetName(newMaterialName)
+            selectedSegment.setText(newMaterialName)
+
+    def showOnlySelectedSegment(self):
+        """
+        Exibe apenas o segmento selecionado e esconde os outros.
+        """
+        segmentationNode = slicer.util.getNode('Segmentation')
+        segmentNames = [self.ui.segmentListWidget.item(i).text() for i in range(self.ui.segmentListWidget.count)]
+        selectedSegment = self.ui.segmentListWidget.currentItem()
+
+        if segmentationNode and selectedSegment:
+            displayNode = segmentationNode.GetDisplayNode()
+            for segmentName in segmentNames:
+                segmentId = segmentationNode.GetSegmentation().GetSegmentIdBySegmentName(segmentName)
+                displayNode.SetSegmentVisibility(segmentId, segmentName == selectedSegment.text())
