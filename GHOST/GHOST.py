@@ -5,21 +5,21 @@ import vtk
 from slicer.ScriptedLoadableModule import *
 import numpy as np
 
-class LPG(ScriptedLoadableModule):
+class GHOST(ScriptedLoadableModule):
     def __init__(self, parent):
         ScriptedLoadableModule.__init__(self, parent)
         parent.title = "GHOST"
         parent.categories = ["Monte Carlo"]
         parent.dependencies = []
-        parent.contributors = ["Harlley Haurado, Pala Salvatice, Mirta Berdeguez e Ademir da Silva"] # Substitua pelo seu nome
-        parent.helpText = """This plugin generate a lattice phantom from a 3D imagem for MCNP code called phantom.inp"""
+        parent.contributors = ["Harlley Haurado, Paula Salvatice, Mirta Berdeguez e Ademir da Silva"] # Substitua pelo seu nome
+        parent.helpText = """This plugin generate a lattice phantom from a 3D imagem for MCNP code called phantom.inp \n Icon Designed by Freepik"""
         parent.acknowledgementText = """""" # Deixe vazio ou adicione créditos
 
-class LPGWidget(ScriptedLoadableModuleWidget):
+class GHOSTWidget(ScriptedLoadableModuleWidget):
     def setup(self):
         ScriptedLoadableModuleWidget.setup(self)
 
-        uiWidget = slicer.util.loadUI(self.resourcePath('UI/LPG.ui'))
+        uiWidget = slicer.util.loadUI(self.resourcePath('UI/GHOST.ui'))
         self.layout.addWidget(uiWidget)
         self.ui = slicer.util.childWidgetVariables(uiWidget)
         self.ui.generateButton.connect('clicked(bool)', self.onGenerateButtonClicked)
