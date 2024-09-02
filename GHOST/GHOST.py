@@ -72,12 +72,28 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
         if not saveDirectory:
             slicer.util.errorDisplay("No directories selected.")
             return
+        
+        # Leitura das opções dos Tallys
+        useGy = self.ui.tallyGyCheckBox.isChecked()
+        useMeV = self.ui.tallyMeVCheckBox.isChecked()
+
+        # Leitura do valor de NPS
+        npsValue = self.ui.npsLineEdit.text
+
+        # Verificações básicas
+        if not useGy and not useMeV:
+            slicer.util.errorDisplay("Select one output unit for Tally F6.")
+            return
+
+        if not npsValue:
+            slicer.util.errorDisplay("Enter a valid value for NPS.")
+            return
 
         voxelArray, segmentNames = self.getVoxelData(segmentationNode, resampledVolumeNode)
         filePath = os.path.join(saveDirectory, 'GHOST')
 
         if voxelArray is not None:
-            self.saveAsMCNPLattice(voxelArray, segmentNames, filePath, spacingValue)
+            self.saveAsMCNPLattice(voxelArray, segmentNames, filePath, spacingValue, useGy, useMeV, npsValue)
             slicer.util.infoDisplay(f"File saved successfully in: {filePath}")
         else:
             slicer.util.errorDisplay("Failed to generate voxel matrix.")
@@ -138,7 +154,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
 
 
 
-    def saveAsMCNPLattice(self, voxelArray, segmentNames, file_path, spacingValue):
+    def saveAsMCNPLattice(self, voxelArray, segmentNames, file_path, spacingValue, useGy, useMeV, npsValue):
         # Carregar materiais do arquivo materials.txt
         materials_dict = self.load_materials(self.resourcePath('database/materials.txt'))
 
@@ -224,9 +240,9 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
 
             # Adicionar os tally F6 para cada material
             file.write("c --- Tally f6 Energy Deposition ---\n")
-            self.addTallyF6(file, segmentNames)
+            self.addTallyF6(file, segmentNames, useGy, useMeV)
 
-            file.write('nps 1E6\n')
+            file.write('nps {npsValue}\n')
 
             
             file.write("c --- End of File ---\n")
@@ -329,16 +345,21 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
 
         return materials
 
-    def addTallyF6(self, file, segmentNames):
+    def addTallyF6(self, file, segmentNames,useGy, useMeV):
             """
-            Adiciona as entradas de tally F6 para cada material no arquivo MCNP.
+            Adiciona as entradas de tally F6 e FM6 para cada material no arquivo MCNP.
             """
             for idx, segmentName in enumerate(segmentNames, start=2):
                 file.write(f"c\n")
                 file.write(f"fc{idx}6 {segmentName}\n")
-                # Adiciona o tally para todas as células associadas ao material
+                # Adiciona os tallys para todas as células associadas ao material
                 cell_numbers = [str(cell_id) for cell_id in range((idx - 1), idx)]
-                file.write(f"f{idx}6:p (({' '.join(cell_numbers)}) < {1000})\n")
+                if useGy:
+                    file.write(f"f{idx}6:p (({' '.join(cell_numbers)}) < {1000})\n")
+                    conversion_factor = 1.602e-10  # Conversão de MeV/g para Gy (J/Kg)
+                    file.write(f"fm{idx}6 {conversion_factor} $ Conversão para Gy para {segmentName}\n")   
+                if not useGy and useMeV:
+                    file.write(f"f{idx}6:p (({' '.join(cell_numbers)}) < {1000})\n")                
 
     def openSegmentEditor(self):
         """
