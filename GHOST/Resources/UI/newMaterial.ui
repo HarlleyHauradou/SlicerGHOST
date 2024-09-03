@@ -1,0 +1,2205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>AddMaterialDialog</class>
+ <widget class="QDialog" name="AddMaterialDialog">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>579</width>
+    <height>458</height>
+   </rect>
+  </property>
+  <property name="sizePolicy">
+   <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+    <horstretch>0</horstretch>
+    <verstretch>0</verstretch>
+   </sizepolicy>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>16777215</width>
+    <height>16777215</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>Adicionar Novo Material</string>
+  </property>
+  <layout class="QVBoxLayout" name="verticalLayout">
+   <item>
+    <layout class="QHBoxLayout" name="nameLayout">
+     <item>
+      <widget class="QLabel" name="nameLabel">
+       <property name="text">
+        <string>Material Name:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="nameLineEdit"/>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item>
+      <widget class="QLabel" name="densityLabel">
+       <property name="text">
+        <string>Density (g/cm³):</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="densityLineEdit"/>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_3">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>5</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label">
+     <property name="text">
+      <string>Element:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <layout class="QGridLayout" name="periodicTableLayout">
+     <item row="3" column="2">
+      <widget class="QPushButton" name="Sc">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Sc</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="13">
+      <widget class="QPushButton" name="Fl">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Fl</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="12">
+      <widget class="QPushButton" name="pushButton_10">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Ho</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="12">
+      <widget class="QPushButton" name="B">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 247, 224);
+color: rgb(148, 88, 23);</string>
+       </property>
+       <property name="text">
+        <string>B</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="9">
+      <widget class="QPushButton" name="Py">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Pt</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="11">
+      <widget class="QPushButton" name="Hg">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Hg</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="3">
+      <widget class="QPushButton" name="Ti">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Ti</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="9">
+      <widget class="QPushButton" name="pushButton_21">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Cm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="14">
+      <widget class="QPushButton" name="pushButton_12">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Tm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="9">
+      <widget class="QPushButton" name="Ni">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Ni</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="12">
+      <widget class="QPushButton" name="Nh">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Nh</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="3">
+      <widget class="QPushButton" name="Rf">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Rf</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="5">
+      <widget class="QPushButton" name="W">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>W</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="12">
+      <widget class="QPushButton" name="Al">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Al</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="6">
+      <widget class="QPushButton" name="pushButton_4">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Pm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="16">
+      <widget class="QPushButton" name="Br">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>Br</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="17">
+      <widget class="QPushButton" name="Og">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Og</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="0">
+      <widget class="QPushButton" name="Rb">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(216, 248, 254);
+color: rgb(31, 118, 140)</string>
+       </property>
+       <property name="text">
+        <string>Rb</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="Na">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(216, 248, 254);
+color: rgb(31, 118, 140)</string>
+       </property>
+       <property name="text">
+        <string>Na</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="15">
+      <widget class="QPushButton" name="Se">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>Se</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="0">
+      <widget class="QPushButton" name="Fr">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(216, 248, 254);
+color: rgb(31, 118, 140)</string>
+       </property>
+       <property name="text">
+        <string>Fr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="8" column="1">
+      <spacer name="verticalSpacer">
+       <property name="orientation">
+        <enum>Qt::Vertical</enum>
+       </property>
+       <property name="sizeType">
+        <enum>QSizePolicy::Fixed</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>20</width>
+         <height>10</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+     <item row="1" column="15">
+      <widget class="QPushButton" name="O">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>O</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="8">
+      <widget class="QPushButton" name="Mt">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Mt</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="14">
+      <widget class="QPushButton" name="Bi">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Bi</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="12">
+      <widget class="QPushButton" name="In">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>In</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="14">
+      <widget class="QPushButton" name="As">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 247, 224);
+color: rgb(148, 88, 23);</string>
+       </property>
+       <property name="text">
+        <string>As</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="11">
+      <widget class="QPushButton" name="pushButton_9">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Dy</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="10">
+      <widget class="QPushButton" name="pushButton_22">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Bk</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="0">
+      <widget class="QPushButton" name="K">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(216, 248, 254);
+color: rgb(31, 118, 140)</string>
+       </property>
+       <property name="text">
+        <string>K</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="14">
+      <widget class="QPushButton" name="pushButton_26">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Md</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="2">
+      <widget class="QPushButton" name="Ac">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Ac</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="4">
+      <widget class="QPushButton" name="Db">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Db</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="8">
+      <widget class="QPushButton" name="pushButton_20">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Am</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="4">
+      <widget class="QPushButton" name="pushButton">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Pr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="3">
+      <widget class="QPushButton" name="Zr">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Zr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="9">
+      <widget class="QPushButton" name="Pd">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Pd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="Mg">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(215, 60, 38);
+background-color: rgb(252, 231, 231);</string>
+       </property>
+       <property name="text">
+        <string>Mg</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="6">
+      <widget class="QPushButton" name="Re">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Re</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="11">
+      <widget class="QPushButton" name="Cd">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Cd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="1">
+      <widget class="QPushButton" name="Ca">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(215, 60, 38);
+background-color: rgb(252, 231, 231);</string>
+       </property>
+       <property name="text">
+        <string>Ca</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="6">
+      <widget class="QPushButton" name="Mn">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Mn</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="12">
+      <widget class="QPushButton" name="Tl">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Tl</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="13">
+      <widget class="QPushButton" name="Pb">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Pb</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="16">
+      <widget class="QPushButton" name="Ts">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Ts</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="7">
+      <widget class="QPushButton" name="pushButton_19">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Pu</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="2">
+      <widget class="QPushButton" name="La">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>La</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="6">
+      <widget class="QPushButton" name="Bh">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Bh</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="Be">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(215, 60, 38);
+background-color: rgb(252, 231, 231);</string>
+       </property>
+       <property name="text">
+        <string>Be</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="15">
+      <widget class="QPushButton" name="Po">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Po</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="16">
+      <widget class="QPushButton" name="F">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>F</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="1">
+      <widget class="QPushButton" name="Ra">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(215, 60, 38);
+background-color: rgb(252, 231, 231);</string>
+       </property>
+       <property name="text">
+        <string>Ra</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="6">
+      <widget class="QPushButton" name="Tc">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Tc</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="8">
+      <widget class="QPushButton" name="pushButton_6">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Eu</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="10">
+      <widget class="QPushButton" name="pushButton_8">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Tb</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="8">
+      <widget class="QPushButton" name="Ir">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Ir</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="15">
+      <widget class="QPushButton" name="Lv">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Lv</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="3">
+      <widget class="QPushButton" name="pushButton_15">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Th</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="9">
+      <widget class="QPushButton" name="pushButton_7">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Gd</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="5">
+      <widget class="QPushButton" name="pushButton_17">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>U</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="13">
+      <widget class="QPushButton" name="pushButton_11">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Er</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="15">
+      <widget class="QPushButton" name="Te">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 247, 224);
+color: rgb(148, 88, 23);</string>
+       </property>
+       <property name="text">
+        <string>Te</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="10">
+      <widget class="QPushButton" name="Au">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Au</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="13">
+      <widget class="QPushButton" name="pushButton_25">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Fm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="15">
+      <widget class="QPushButton" name="pushButton_27">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>No</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="12">
+      <widget class="QPushButton" name="pushButton_24">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Es</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="13">
+      <widget class="QPushButton" name="Sn">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Sn</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="9">
+      <widget class="QPushButton" name="Ds">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Ds</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="11">
+      <widget class="QPushButton" name="Cn">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Cn</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="7">
+      <widget class="QPushButton" name="pushButton_5">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Sm</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="16">
+      <widget class="QPushButton" name="Cl">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>Cl</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="10">
+      <widget class="QPushButton" name="Ag">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Ag</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="5">
+      <widget class="QPushButton" name="Mo">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Mo</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="14">
+      <widget class="QPushButton" name="Sb">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 247, 224);
+color: rgb(148, 88, 23);</string>
+       </property>
+       <property name="text">
+        <string>Sb</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="17">
+      <widget class="QPushButton" name="Ar">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(252, 231, 235);
+color: rgb(231, 103, 101);</string>
+       </property>
+       <property name="text">
+        <string>Ar</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="Li">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(216, 248, 254);
+color: rgb(31, 118, 140)</string>
+       </property>
+       <property name="text">
+        <string>Li</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="17">
+      <widget class="QPushButton" name="Xe">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(252, 231, 235);
+color: rgb(231, 103, 101);</string>
+       </property>
+       <property name="text">
+        <string>Xe</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
+      <widget class="QPushButton" name="Ba">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(215, 60, 38);
+background-color: rgb(252, 231, 231);</string>
+       </property>
+       <property name="text">
+        <string>Ba</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="10">
+      <widget class="QPushButton" name="Rg">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Rg</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="4">
+      <widget class="QPushButton" name="Ta">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Ta</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="10">
+      <widget class="QPushButton" name="Cu">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Cu</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="14">
+      <widget class="QPushButton" name="Mc">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(231, 231, 234);
+color: rgb(63, 56, 83);</string>
+       </property>
+       <property name="text">
+        <string>Mc</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="12">
+      <widget class="QPushButton" name="Ga">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>Ga</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="7">
+      <widget class="QPushButton" name="Ru">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Ru</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="17">
+      <widget class="QPushButton" name="Kr">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(252, 231, 235);
+color: rgb(231, 103, 101);</string>
+       </property>
+       <property name="text">
+        <string>Kr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="15">
+      <widget class="QPushButton" name="pushButton_13">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Yb</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="16">
+      <widget class="QPushButton" name="pushButton_28">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Lr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="3">
+      <widget class="QPushButton" name="Hf">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Hf</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="7">
+      <widget class="QPushButton" name="Hs">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Hs</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="2">
+      <widget class="QPushButton" name="Y">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Y</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="11">
+      <widget class="QPushButton" name="pushButton_23">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Cf</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="17">
+      <widget class="QPushButton" name="He">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(252, 231, 235);
+color: rgb(231, 103, 101);</string>
+       </property>
+       <property name="text">
+        <string>He</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="8">
+      <widget class="QPushButton" name="Rh">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Rh</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="15">
+      <widget class="QPushButton" name="S">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>S</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="8">
+      <widget class="QPushButton" name="Co">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Co</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="17">
+      <widget class="QPushButton" name="Rn">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(252, 231, 235);
+color: rgb(231, 103, 101);</string>
+       </property>
+       <property name="text">
+        <string>Rn</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="13">
+      <widget class="QPushButton" name="Ge">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 247, 224);
+color: rgb(148, 88, 23);</string>
+       </property>
+       <property name="text">
+        <string>Ge</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="16">
+      <widget class="QPushButton" name="pushButton_14">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Lu</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="1">
+      <widget class="QPushButton" name="Sr">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">color: rgb(215, 60, 38);
+background-color: rgb(252, 231, 231);</string>
+       </property>
+       <property name="text">
+        <string>Sr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="4">
+      <widget class="QPushButton" name="Nb">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Nb</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="6">
+      <widget class="QPushButton" name="pushButton_18">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Np</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="7">
+      <widget class="QPushButton" name="Fe">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Fe</string>
+       </property>
+      </widget>
+     </item>
+     <item row="6" column="5">
+      <widget class="QPushButton" name="Sg">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Sg</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="4">
+      <widget class="QPushButton" name="V">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>V</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="5">
+      <widget class="QPushButton" name="Cr">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Cr</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="14">
+      <widget class="QPushButton" name="P">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>P</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="17">
+      <widget class="QPushButton" name="Ne">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(252, 231, 235);
+color: rgb(231, 103, 101);</string>
+       </property>
+       <property name="text">
+        <string>Ne</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="16">
+      <widget class="QPushButton" name="At">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(214, 249, 232);
+color: rgb(13, 51, 52);</string>
+       </property>
+       <property name="text">
+        <string>At</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="14">
+      <widget class="QPushButton" name="N">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>N</string>
+       </property>
+      </widget>
+     </item>
+     <item row="3" column="11">
+      <widget class="QPushButton" name="Zn">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Zn</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="13">
+      <widget class="QPushButton" name="Si">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 247, 224);
+color: rgb(148, 88, 23);</string>
+       </property>
+       <property name="text">
+        <string>Si</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="0">
+      <widget class="QPushButton" name="Cs">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="autoFillBackground">
+        <bool>false</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(216, 248, 254);
+color: rgb(31, 118, 140)</string>
+       </property>
+       <property name="text">
+        <string>Cs</string>
+       </property>
+      </widget>
+     </item>
+     <item row="10" column="4">
+      <widget class="QPushButton" name="pushButton_16">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(254, 230, 212);
+color: rgb(199, 54, 27);</string>
+       </property>
+       <property name="text">
+        <string>Pa</string>
+       </property>
+      </widget>
+     </item>
+     <item row="4" column="16">
+      <widget class="QPushButton" name="I">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>I</string>
+       </property>
+      </widget>
+     </item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="H">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>H</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="3">
+      <widget class="QPushButton" name="pushButton_2">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Ce</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="7">
+      <widget class="QPushButton" name="Os">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(243, 232, 253);
+color: rgb(106, 101, 236);</string>
+       </property>
+       <property name="text">
+        <string>Os</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="13">
+      <widget class="QPushButton" name="C">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(226, 238, 254);
+color: rgb(7, 99, 240);</string>
+       </property>
+       <property name="text">
+        <string>C</string>
+       </property>
+      </widget>
+     </item>
+     <item row="9" column="5">
+      <widget class="QPushButton" name="pushButton_3">
+       <property name="maximumSize">
+        <size>
+         <width>25</width>
+         <height>25</height>
+        </size>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(223, 243, 254);
+color: rgb(0, 57, 107);</string>
+       </property>
+       <property name="text">
+        <string>Nd</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_2">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>10</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <layout class="QHBoxLayout" name="elementLayout">
+     <item>
+      <widget class="QLabel" name="fractionLabel">
+       <property name="text">
+        <string>Fraction:</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="QLineEdit" name="fractionLineEdit"/>
+     </item>
+     <item>
+      <widget class="QPushButton" name="addElementButton">
+       <property name="text">
+        <string>Add Element</string>
+       </property>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <spacer name="verticalSpacer_4">
+     <property name="orientation">
+      <enum>Qt::Vertical</enum>
+     </property>
+     <property name="sizeHint" stdset="0">
+      <size>
+       <width>20</width>
+       <height>5</height>
+      </size>
+     </property>
+    </spacer>
+   </item>
+   <item>
+    <widget class="QLabel" name="label_2">
+     <property name="text">
+      <string>Added Elements:</string>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QTextEdit" name="memo">
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>200</height>
+      </size>
+     </property>
+    </widget>
+   </item>
+   <item>
+    <widget class="QPushButton" name="createButton">
+     <property name="text">
+      <string>Create New Materal</string>
+     </property>
+    </widget>
+   </item>
+  </layout>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

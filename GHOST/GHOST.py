@@ -27,6 +27,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
         self.ui.generateButton.connect('clicked(bool)', self.onGenerateButtonClicked)
         self.ui.segmentEditorButton.connect('clicked(bool)', self.openSegmentEditor)
         self.ui.renameButton.connect('clicked(bool)', self.renameSegment)
+        self.ui.addMaterialButton.clicked.connect(self.showAddMaterialDialog)
 
         # Preenche a lista de segmentos e materiais
         self.populateSegmentList()
@@ -37,6 +38,11 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
 
     def resourcePath(self, filename):
         return os.path.join(os.path.dirname(__file__), 'Resources', filename)
+    
+    def showAddMaterialDialog(self):
+        dialog = AddMaterialDialog(self)
+        if dialog.exec_() == qt.QDialog.Accepted:
+            self.populateMaterialComboBox()
 
     def onGenerateButtonClicked(self):
         # Obter o primeiro nó que seja um volume de imagem (tipo vtkMRMLScalarVolumeNode)
@@ -413,3 +419,69 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             for segmentName in segmentNames:
                 segmentId = segmentationNode.GetSegmentation().GetSegmentIdBySegmentName(segmentName)
                 displayNode.SetSegmentVisibility(segmentId, segmentName == selectedSegment.text())
+
+
+
+
+
+
+
+############# ADD NEW MATERIAL POP-UP ########################
+
+
+class AddMaterialDialog(qt.QDialog):
+    def __init__(self, parent=None):
+        super(AddMaterialDialog, self).__init__()
+
+        # Carregar o arquivo .ui
+        uiWidget = slicer.util.loadUI(self.resourcePath('UI/newMaterial.ui'))
+        self.setLayout(qt.QVBoxLayout())
+        self.layout().addWidget(uiWidget)
+        self.ui = slicer.util.childWidgetVariables(uiWidget)
+
+        # Conectar sinais
+        self.ui.addElementButton.clicked.connect(self.addElement)
+        self.ui.createButton.clicked.connect(self.createMaterial)
+
+    def resourcePath(self, filename):
+        return os.path.join(os.path.dirname(__file__), 'Resources', filename)
+
+    def addElement(self):
+        """
+        Adiciona o elemento e a fração à lista.
+        """
+        selectedItems = self.periodicTable.selectedItems()
+        if selectedItems and self.fractionLineEdit.text():
+            element = selectedItems[0].text()
+            fraction = self.fractionLineEdit.text()
+            self.memo.append(f"{element}: {fraction}")
+            self.fractionLineEdit.clear()
+            self.periodicTable.clearSelection()
+
+    def createMaterial(self):
+        """
+        Salva o material no banco de dados e fecha a janela.
+        """
+        name = self.nameLineEdit.text()
+        density = self.densityLineEdit.text()
+        elements = self.memo.toPlainText()
+
+        # Verificar se os campos estão preenchidos
+        if not name or not density or not elements:
+            qt.QMessageBox.warning(self, "Erro", "Todos os campos devem ser preenchidos.")
+            return
+
+        # Salvar material em materials.txt
+        with open(self.parent().resourcePath('database/materials.txt'), 'a') as file:
+            file.write(f"c {name} Density (g/cm3) = {density}\n")
+            lines = elements.split('\n')
+            for i, line in enumerate(lines):
+                if i == 0:
+                    file.write(f"m{self.parent().getNextMaterialId()} {line.replace(':', ' ')}\n")
+                else:
+                    file.write(f"        {line.replace(':', ' ')}\n")
+            file.write("\n")
+
+        # Fechar a janela
+        self.accept()
+
