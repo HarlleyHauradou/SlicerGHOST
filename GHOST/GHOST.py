@@ -42,7 +42,8 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
     def showAddMaterialDialog(self):
         dialog = AddMaterialDialog(self)
         if dialog.exec_() == qt.QDialog.Accepted:
-            self.populateMaterialComboBox()
+            self.ui.materialComboBox.clear()
+            self.populateMaterialComboBox()        
 
     def onGenerateButtonClicked(self):
         # Obter o primeiro nó que seja um volume de imagem (tipo vtkMRMLScalarVolumeNode)
@@ -427,7 +428,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
 
 
 ############# ADD NEW MATERIAL POP-UP ########################
-
+from Resources.database.element_data import element_data
 
 class AddMaterialDialog(qt.QDialog):
     def __init__(self, parent=None):
@@ -440,31 +441,52 @@ class AddMaterialDialog(qt.QDialog):
         self.ui = slicer.util.childWidgetVariables(uiWidget)
 
         # Conectar sinais
-        self.ui.addElementButton.clicked.connect(self.addElement)
+        # self.ui.addElementButton.clicked.connect(self.addElement)
         self.ui.createButton.clicked.connect(self.createMaterial)
+
+
+        # Conectando botões de elementos ao método de adição
+        for element, (atomic_number, mass_number) in element_data.items():
+            button = getattr(self.ui, element)
+            if button:
+                button.clicked.connect(lambda checked, el=element: self.add_element(el))
+
+        # Conectar o botão de adicionar o elemento ao memo
+        self.ui.addElementButton.clicked.connect(self.add_element_to_memo)
+
+        # Salva novo material no banco dados
+        self.ui.createButton.clicked.connect(self.createMaterial)
+    
+
+    def add_element(self, element):
+        """Adiciona o elemento selecionado na variável `selected_element`"""
+        atomic_number, mass_number = element_data[element]
+        formatted_element = f"{atomic_number}{mass_number:03d}"
+        self.selected_element = formatted_element
+
+    def add_element_to_memo(self):
+        """Adiciona o elemento formatado e a fração no memo"""
+        fraction = self.ui.fractionLineEdit.text
+        if hasattr(self, 'selected_element') and fraction:
+            memo_text = f"{self.selected_element}.    {fraction}"
+            self.ui.memo.append(memo_text)
+            self.ui.fractionLineEdit.clear()
+        else:
+            print("Erro: Selecione um elemento e insira uma fração.")
+
+
 
     def resourcePath(self, filename):
         return os.path.join(os.path.dirname(__file__), 'Resources', filename)
 
-    def addElement(self):
-        """
-        Adiciona o elemento e a fração à lista.
-        """
-        selectedItems = self.periodicTable.selectedItems()
-        if selectedItems and self.fractionLineEdit.text():
-            element = selectedItems[0].text()
-            fraction = self.fractionLineEdit.text()
-            self.memo.append(f"{element}: {fraction}")
-            self.fractionLineEdit.clear()
-            self.periodicTable.clearSelection()
 
     def createMaterial(self):
         """
         Salva o material no banco de dados e fecha a janela.
         """
-        name = self.nameLineEdit.text()
-        density = self.densityLineEdit.text()
-        elements = self.memo.toPlainText()
+        name = self.ui.nameLineEdit.text
+        density = self.ui.densityLineEdit.text
+        elements = self.ui.memo.toPlainText()
 
         # Verificar se os campos estão preenchidos
         if not name or not density or not elements:
@@ -472,15 +494,14 @@ class AddMaterialDialog(qt.QDialog):
             return
 
         # Salvar material em materials.txt
-        with open(self.parent().resourcePath('database/materials.txt'), 'a') as file:
-            file.write(f"c {name} Density (g/cm3) = {density}\n")
+        with open(self.resourcePath('database/materials.txt'), 'a') as file:
+            file.write(f"\nc {name} Density (g/cm3) = {density}\n")
             lines = elements.split('\n')
             for i, line in enumerate(lines):
                 if i == 0:
-                    file.write(f"m{self.parent().getNextMaterialId()} {line.replace(':', ' ')}\n")
+                    file.write(f"mx       {line.replace(':', ' ')}\n")
                 else:
-                    file.write(f"        {line.replace(':', ' ')}\n")
-            file.write("\n")
+                    file.write(f"         {line.replace(':', ' ')}\n")
 
         # Fechar a janela
         self.accept()

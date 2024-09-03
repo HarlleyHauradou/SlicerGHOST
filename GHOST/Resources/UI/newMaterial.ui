@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>579</width>
-    <height>458</height>
+    <height>518</height>
    </rect>
   </property>
   <property name="sizePolicy">
@@ -120,7 +120,7 @@ color: rgb(63, 56, 83);</string>
       </widget>
      </item>
      <item row="9" column="12">
-      <widget class="QPushButton" name="pushButton_10">
+      <widget class="QPushButton" name="Ho">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -154,7 +154,7 @@ color: rgb(148, 88, 23);</string>
       </widget>
      </item>
      <item row="5" column="9">
-      <widget class="QPushButton" name="Py">
+      <widget class="QPushButton" name="Pt">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -205,7 +205,7 @@ color: rgb(106, 101, 236);</string>
       </widget>
      </item>
      <item row="10" column="9">
-      <widget class="QPushButton" name="pushButton_21">
+      <widget class="QPushButton" name="Cm">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -222,7 +222,7 @@ color: rgb(199, 54, 27);</string>
       </widget>
      </item>
      <item row="9" column="14">
-      <widget class="QPushButton" name="pushButton_12">
+      <widget class="QPushButton" name="Tm">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -324,7 +324,7 @@ color: rgb(13, 51, 52);</string>
       </widget>
      </item>
      <item row="9" column="6">
-      <widget class="QPushButton" name="pushButton_4">
+      <widget class="QPushButton" name="Pm">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -553,7 +553,7 @@ color: rgb(148, 88, 23);</string>
       </widget>
      </item>
      <item row="9" column="11">
-      <widget class="QPushButton" name="pushButton_9">
+      <widget class="QPushButton" name="Dy">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -570,7 +570,7 @@ color: rgb(0, 57, 107);</string>
       </widget>
      </item>
      <item row="10" column="10">
-      <widget class="QPushButton" name="pushButton_22">
+      <widget class="QPushButton" name="Bk">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -607,7 +607,7 @@ color: rgb(31, 118, 140)</string>
       </widget>
      </item>
      <item row="10" column="14">
-      <widget class="QPushButton" name="pushButton_26">
+      <widget class="QPushButton" name="Md">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -658,7 +658,7 @@ color: rgb(106, 101, 236);</string>
       </widget>
      </item>
      <item row="10" column="8">
-      <widget class="QPushButton" name="pushButton_20">
+      <widget class="QPushButton" name="Am">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -675,7 +675,7 @@ color: rgb(199, 54, 27);</string>
       </widget>
      </item>
      <item row="9" column="4">
-      <widget class="QPushButton" name="pushButton">
+      <widget class="QPushButton" name="Pr">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -862,7 +862,7 @@ color: rgb(63, 56, 83);</string>
       </widget>
      </item>
      <item row="10" column="7">
-      <widget class="QPushButton" name="pushButton_19">
+      <widget class="QPushButton" name="Pu">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -998,7 +998,7 @@ color: rgb(106, 101, 236);</string>
       </widget>
      </item>
      <item row="9" column="8">
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="Eu">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1015,7 +1015,7 @@ color: rgb(0, 57, 107);</string>
       </widget>
      </item>
      <item row="9" column="10">
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="Tb">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1066,7 +1066,7 @@ color: rgb(63, 56, 83);</string>
       </widget>
      </item>
      <item row="10" column="3">
-      <widget class="QPushButton" name="pushButton_15">
+      <widget class="QPushButton" name="Th">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1083,7 +1083,7 @@ color: rgb(199, 54, 27);</string>
       </widget>
      </item>
      <item row="9" column="9">
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="Gd">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1100,7 +1100,7 @@ color: rgb(0, 57, 107);</string>
       </widget>
      </item>
      <item row="10" column="5">
-      <widget class="QPushButton" name="pushButton_17">
+      <widget class="QPushButton" name="U">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1117,7 +1117,7 @@ color: rgb(199, 54, 27);</string>
       </widget>
      </item>
      <item row="9" column="13">
-      <widget class="QPushButton" name="pushButton_11">
+      <widget class="QPushButton" name="Er">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1168,7 +1168,7 @@ color: rgb(106, 101, 236);</string>
       </widget>
      </item>
      <item row="10" column="13">
-      <widget class="QPushButton" name="pushButton_25">
+      <widget class="QPushButton" name="Fm">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1185,7 +1185,7 @@ color: rgb(199, 54, 27);</string>
       </widget>
      </item>
      <item row="10" column="15">
-      <widget class="QPushButton" name="pushButton_27">
+      <widget class="QPushButton" name="No">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1202,7 +1202,7 @@ color: rgb(199, 54, 27);</string>
       </widget>
      </item>
      <item row="10" column="12">
-      <widget class="QPushButton" name="pushButton_24">
+      <widget class="QPushButton" name="Es">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1270,7 +1270,7 @@ color: rgb(63, 56, 83);</string>
       </widget>
      </item>
      <item row="9" column="7">
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="Sm">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1545,7 +1545,7 @@ color: rgb(231, 103, 101);</string>
       </widget>
      </item>
      <item row="9" column="15">
-      <widget class="QPushButton" name="pushButton_13">
+      <widget class="QPushButton" name="Yb">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1562,7 +1562,7 @@ color: rgb(0, 57, 107);</string>
       </widget>
      </item>
      <item row="10" column="16">
-      <widget class="QPushButton" name="pushButton_28">
+      <widget class="QPushButton" name="Lr">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1630,7 +1630,7 @@ color: rgb(106, 101, 236);</string>
       </widget>
      </item>
      <item row="10" column="11">
-      <widget class="QPushButton" name="pushButton_23">
+      <widget class="QPushButton" name="Cf">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1749,7 +1749,7 @@ color: rgb(148, 88, 23);</string>
       </widget>
      </item>
      <item row="9" column="16">
-      <widget class="QPushButton" name="pushButton_14">
+      <widget class="QPushButton" name="Lu">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -1800,7 +1800,7 @@ color: rgb(106, 101, 236);</string>
       </widget>
      </item>
      <item row="10" column="6">
-      <widget class="QPushButton" name="pushButton_18">
+      <widget class="QPushButton" name="Np">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -2007,7 +2007,7 @@ color: rgb(31, 118, 140)</string>
       </widget>
      </item>
      <item row="10" column="4">
-      <widget class="QPushButton" name="pushButton_16">
+      <widget class="QPushButton" name="Pa">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -2058,7 +2058,7 @@ color: rgb(7, 99, 240);</string>
       </widget>
      </item>
      <item row="9" column="3">
-      <widget class="QPushButton" name="pushButton_2">
+      <widget class="QPushButton" name="Ce">
        <property name="maximumSize">
         <size>
          <width>25</width>
@@ -2109,7 +2109,7 @@ color: rgb(7, 99, 240);</string>
       </widget>
      </item>
      <item row="9" column="5">
-      <widget class="QPushButton" name="pushButton_3">
+      <widget class="QPushButton" name="Nd">
        <property name="maximumSize">
         <size>
          <width>25</width>
