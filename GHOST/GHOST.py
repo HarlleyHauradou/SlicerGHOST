@@ -178,44 +178,52 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write("c    ---------------------------------------------------------------------------\n")
             file.write("c ********************* Cell Cards *********************\n")
             file.write("1000 0 1 -2 3 -4 5 -6 fill=999 imp:p=1 imp:e=1 $ $ cell containing the phantom\n")
-            file.write("2000 0 -20 1 -40 3 50 -6 lat=1 u=999 imp:p=1 imp:e=1\n")
+            file.write("2000 0 -20 1 -40 3 -50 5 lat=1 u=999 imp:p=1 imp:e=1\n")
             file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
             
             # Escrever a matriz voxel no formato lattice
             fill_lines = self.create_fill_lines(voxelArray)
             for line in fill_lines:
                 file.write(line + "\n")
-            file.write('3000 0 #1000 imp:p=1 imp:e=1\n')
             
             # Definição de materiais e células
             file.write("c --- Universe Definitions ---\n")
-            file.write("1 1 -1.205e-3 -20 1 -40 3 50 -6 u=1 imp:p=1 imp:e=1 $ Air surrounding the phantom\n")
-            file.write('3001 0 #1 u=1 imp:p=1 imp:e=1\n')
-            file.write('c \n')
+            file.write("1 1 -1.205e-3 -20 1 -40 3 -50 5 u=1 imp:p=1 imp:e=1 $ Air surrounding the phantom\n")
 
             for idx, segmentName in enumerate(segmentNames, start=2):
                 material_info = materials_dict.get(segmentName)
                 if material_info:
                     density = material_info['density']
                     file.write(f"{idx} like 1 but mat={idx} rho=-{density:.6f} u={idx} imp:p=1 imp:e=1 $ {segmentName}\n")
-                    file.write(f'300{idx} 0 #{idx} u={idx} imp:p=1 imp:e=1\n')
                 else:
                     print(f'Material for segment {segmentName} not found in materials.txt')
             
+            file.write('9000 1 -1.205e-3 -90 #1000 imp:p=1 imp:e=1 $ World\n')
+            file.write('9999 0 #9000 imp:p =0 imp:e=0 $ Out of World\n')
+            
+            px_max = spacingValue[0] * voxelArray.shape[2]
+            py_max = spacingValue[1] * voxelArray.shape[1]
+            pz_max = spacingValue[2] * voxelArray.shape[0]
+
+
+
             file.write("\n")
             file.write("c ********************* Surface Cards *********************\n")
             file.write('c\n')
-            file.write('c --- Voxel Resolution ---\n')
+            file.write('c --- Phantom Dimension ---\n')
             file.write('c\n')
             file.write(f'1 px 0\n')
-            file.write(f'2 px {spacingValue[0] * voxelArray.shape[2]}\n')
+            file.write(f'2 px {px_max}\n')
             file.write(f'3 py 0\n') 
-            file.write(f'4 py {spacingValue[1] * voxelArray.shape[1]}\n')
+            file.write(f'4 py {py_max}\n')
             file.write(f'5 pz 0\n') 
-            file.write(f'6 pz {spacingValue[2] * voxelArray.shape[0]}\n')
+            file.write(f'6 pz {pz_max}\n')
+            file.write('c --- Voxel Resolution ---\n')
             file.write(f'20 px {spacingValue[0]}\n')
             file.write(f'40 py {spacingValue[1]}\n')
             file.write(f'50 pz {spacingValue[2]}\n')
+            file.write('c --- World ---\n')
+            file.write(f'90 rpp -10 {px_max + 10} -10 {py_max + 10} -10 {pz_max + 110}\n')
             file.write("c \n")
             file.write(' \n')
 
@@ -223,6 +231,12 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write("c \n")
             file.write('c --- Source Definition ---\n')
             file.write("mode p e\n")
+            file.write('c ----- 10 MeV photon source collimated in a 10cm x 10cm field -----\n')
+            file.write(f'SDEF pos=0 0 {pz_max + 100} x=d1 y=d2 z=0 par=p erg=10 axs=0 0 -1 ext=0\n')
+            file.write('SI1 -5 5\n') 
+            file.write('SP1 0 1\n')
+            file.write('SI2 -5 5\n')
+            file.write('SP2 0 1\n')
             file.write('c\n')
             # Adicionar as definições dos materiais no final            
             file.write("c --- Material Definitions ---\n")
@@ -249,7 +263,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write("c --- Tally f6 Energy Deposition ---\n")
             self.addTallyF6(file, segmentNames, useGy, useMeV)
 
-            file.write('nps {npsValue}\n')
+            file.write(f'nps {npsValue}\n')
 
             
             file.write("c --- End of File ---\n")
@@ -264,7 +278,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
         column_count = 6
 
         # Inverter a ordem das fatias em Z (primeira dimensão)
-        voxelArray = voxelArray[::-1, :, :]
+        # voxelArray = voxelArray[::-1, :, :]
 
         # Flatten the 3D voxel array in order of i, j, k
         flattened_voxels = voxelArray.flatten()
