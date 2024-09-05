@@ -178,7 +178,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write("c    ---------------------------------------------------------------------------\n")
             file.write("c ********************* Cell Cards *********************\n")
             file.write("1000 0 1 -2 3 -4 5 -6 fill=999 imp:p=1 imp:e=1 $ $ cell containing the phantom\n")
-            file.write("2000 0 -20 1 -40 3 -50 5 lat=1 u=999 imp:p=1 imp:e=1\n")
+            file.write("2000 0 -20 11 -40 13 -50 15 lat=1 u=999 imp:p=1 imp:e=1\n")
             file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
             
             # Escrever a matriz voxel no formato lattice
@@ -188,7 +188,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             
             # Definição de materiais e células
             file.write("c --- Universe Definitions ---\n")
-            file.write("1 1 -1.205e-3 -20 1 -40 3 -50 5 u=1 imp:p=1 imp:e=1 $ Air surrounding the phantom\n")
+            file.write("1 1 -1.205e-3 -20 11 -40 13 -50 15 u=1 imp:p=1 imp:e=1 $ Air surrounding the phantom\n")
 
             for idx, segmentName in enumerate(segmentNames, start=2):
                 material_info = materials_dict.get(segmentName)
@@ -212,16 +212,19 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write('c\n')
             file.write('c --- Phantom Dimension ---\n')
             file.write('c\n')
-            file.write(f'1 px 0\n')
-            file.write(f'2 px {px_max}\n')
-            file.write(f'3 py 0\n') 
-            file.write(f'4 py {py_max}\n')
-            file.write(f'5 pz 0\n') 
-            file.write(f'6 pz {pz_max}\n')
+            file.write(f'1 px 0.01\n')
+            file.write(f'2 px {px_max - 0.01}\n')
+            file.write(f'3 py 0.01\n') 
+            file.write(f'4 py {py_max - 0.01}\n')
+            file.write(f'5 pz 0.01\n') 
+            file.write(f'6 pz {pz_max - 0.01}\n')
             file.write('c --- Voxel Resolution ---\n')
             file.write(f'20 px {spacingValue[0]}\n')
+            file.write(f'11 px 0.0\n')
             file.write(f'40 py {spacingValue[1]}\n')
+            file.write(f'13 py 0.0\n')
             file.write(f'50 pz {spacingValue[2]}\n')
+            file.write(f'15 pz 0.0\n')
             file.write('c --- World ---\n')
             file.write(f'90 rpp -10 {px_max + 10} -10 {py_max + 10} -10 {pz_max + 110}\n')
             file.write("c \n")
@@ -374,7 +377,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
                 file.write(f"c\n")
                 file.write(f"fc{idx}6 {segmentName}\n")
                 # Adiciona os tallys para todas as células associadas ao material
-                cell_numbers = [str(cell_id) for cell_id in range((idx - 1), idx)]
+                cell_numbers = [str(cell_id+1) for cell_id in range((idx - 1), idx)]
                 if useGy:
                     file.write(f"f{idx}6:p (({' '.join(cell_numbers)}) < {1000})\n")
                     conversion_factor = 1.602e-10  # Conversão de MeV/g para Gy (J/Kg)
