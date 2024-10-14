@@ -11,8 +11,8 @@ class GHOST(ScriptedLoadableModule):
         parent.title = "GHOST"
         parent.categories = ["Monte Carlo"]
         parent.dependencies = []
-        parent.contributors = ["Harlley Haurado, Paula Salvatice, Mirta Berdeguez e Ademir da Silva"] # Substitua pelo seu nome
-        parent.helpText = """This plugin generate a lattice phantom from a 3D imagem for MCNP code called phantom.inp \n Icon Designed by Freepik"""
+        parent.contributors = ["Harlley Haurado, Paula Selvatice, Mirta Berdeguez e Ademir da Silva"] # Substitua pelo seu nome
+        parent.helpText = """This plugin generate a lattice phantom from a 3D imagem for MCNP code called phantom.inp"""
         parent.acknowledgementText = """""" # Deixe vazio ou adicione créditos
 
 class GHOSTWidget(ScriptedLoadableModuleWidget):
@@ -26,6 +26,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
         # Conecta os botões ao seus respectivos métodos
         self.ui.generateButton.connect('clicked(bool)', self.onGenerateButtonClicked)
         self.ui.segmentEditorButton.connect('clicked(bool)', self.openSegmentEditor)
+        self.ui.loadSegmentationButton.connect('clicked(bool)', self.populateSegmentList and self.populateMaterialComboBox)
         self.ui.renameButton.connect('clicked(bool)', self.renameSegment)
         self.ui.addMaterialButton.clicked.connect(self.showAddMaterialDialog)
 
@@ -38,6 +39,7 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
 
     def resourcePath(self, filename):
         return os.path.join(os.path.dirname(__file__), 'Resources', filename)
+
     
     def showAddMaterialDialog(self):
         dialog = AddMaterialDialog(self)
@@ -179,7 +181,21 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write("c ********************* Cell Cards *********************\n")
             file.write("1000 0 1 -2 3 -4 5 -6 fill=999 imp:p=1 imp:e=1 $ $ cell containing the phantom\n")
             file.write("2000 0 -20 11 -40 13 -50 15 lat=1 u=999 imp:p=1 imp:e=1\n")
-            file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
+            # Escreve o fill de acordo com a paridade do numero de voxels por dimensão
+            fill_ranges = []
+            for dim_size in voxelArray.shape:
+                mid = dim_size // 2
+                if dim_size % 2 == 0:  # par
+                    fill_range = f"-{mid}:{mid-1}"
+                else:  # ímpar
+                    fill_range = f"-{mid}:{mid}"
+                fill_ranges.append(fill_range)
+
+            file.write(f"     fill={fill_ranges[2]} {fill_ranges[1]} {fill_ranges[0]}\n")
+
+
+
+            # file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
             
             # Escrever a matriz voxel no formato lattice
             fill_lines = self.create_fill_lines(voxelArray)
