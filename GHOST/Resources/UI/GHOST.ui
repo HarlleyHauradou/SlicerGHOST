@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>526</width>
+    <width>542</width>
     <height>823</height>
    </rect>
   </property>
@@ -76,11 +76,22 @@
           </widget>
          </item>
          <item>
-          <widget class="QPushButton" name="segmentEditorButton">
-           <property name="text">
-            <string>Segment Editor</string>
-           </property>
-          </widget>
+          <layout class="QHBoxLayout" name="horizontalLayout_2">
+           <item>
+            <widget class="QPushButton" name="segmentEditorButton">
+             <property name="text">
+              <string>Segment Editor</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QPushButton" name="loadSegmentationButton">
+             <property name="text">
+              <string>Load Segmentation</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
          <item>
           <widget class="QLabel" name="label_2">
@@ -128,7 +139,7 @@
             <widget class="QPushButton" name="addMaterialButton">
              <property name="maximumSize">
               <size>
-               <width>25</width>
+               <width>100</width>
                <height>25</height>
               </size>
              </property>
@@ -136,11 +147,7 @@
               <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;Create new material&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
              </property>
              <property name="text">
-              <string/>
-             </property>
-             <property name="icon">
-              <iconset>
-               <normaloff>../Icons/newMaterial.png</normaloff>../Icons/newMaterial.png</iconset>
+              <string>New Material</string>
              </property>
              <property name="iconSize">
               <size>
