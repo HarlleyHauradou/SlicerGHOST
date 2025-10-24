@@ -1,8 +1,8 @@
-# GHOST - Generator of High Optimized Simulation Templates
+# GHOST - Generator of Health Optimized Simulation Templates
 
 ## Overview
 
-**GHOST** (Generator of High Optimized Simulation Templates) is a plugin for the [3D Slicer](https://www.slicer.org/) platform designed to facilitate the creation of voxelized phantoms for Monte Carlo N-Particle (MCNP) simulations. The plugin allows users to convert segmented 3D images into lattice structures compatible with the MCNP code, automatically handling the conversion and generating the necessary input files (`GHOST`) for MCNP simulations.
+**GHOST** (Generator of Health Optimized Simulation Templates) is a plugin for the [3D Slicer](https://www.slicer.org/) platform designed to facilitate the creation of voxelized phantoms for Monte Carlo N-Particle (MCNP) simulations. The plugin allows users to convert segmented 3D images into lattice structures compatible with the MCNP code, automatically handling the conversion and generating the necessary input files (`GHOST`) for MCNP simulations.
 
 ## Features
 
@@ -65,8 +65,8 @@ Contributions are welcome! If you have any suggestions, find a bug, or want to a
 
 ## License
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the Apache License 2.0
 
 ## Contact
 
-For any inquiries or issues, please contact Harlley Haurado.
+For any inquiries or issues, please contact Harlley Hauradou.
