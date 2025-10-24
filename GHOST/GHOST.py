@@ -182,20 +182,18 @@ class GHOSTWidget(ScriptedLoadableModuleWidget):
             file.write("1000 0 1 -2 3 -4 5 -6 fill=999 imp:p=1 imp:e=1 $ $ cell containing the phantom\n")
             file.write("2000 0 -20 11 -40 13 -50 15 lat=1 u=999 imp:p=1 imp:e=1\n")
             # Escreve o fill de acordo com a paridade do numero de voxels por dimensão
-            fill_ranges = []
-            for dim_size in voxelArray.shape:
-                mid = dim_size // 2
-                if dim_size % 2 == 0:  # par
-                    fill_range = f"-{mid}:{mid-1}"
-                else:  # ímpar
-                    fill_range = f"-{mid}:{mid}"
-                fill_ranges.append(fill_range)
+            # fill_ranges = []
+            # for dim_size in voxelArray.shape:
+            #     mid = dim_size // 2
+            #     if dim_size % 2 == 0:  # par
+            #         fill_range = f"-{mid}:{mid-1}"
+            #     else:  # ímpar
+            #         fill_range = f"-{mid}:{mid}"
+            #     fill_ranges.append(fill_range)
 
-            file.write(f"     fill={fill_ranges[2]} {fill_ranges[1]} {fill_ranges[0]}\n")
+            # file.write(f"     fill={fill_ranges[2]} {fill_ranges[1]} {fill_ranges[0]}\n")
 
-
-
-            # file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
+            file.write(f"     fill=0:{voxelArray.shape[2]-1} 0:{voxelArray.shape[1]-1} 0:{voxelArray.shape[0]-1}\n")
             
             # Escrever a matriz voxel no formato lattice
             fill_lines = self.create_fill_lines(voxelArray)
