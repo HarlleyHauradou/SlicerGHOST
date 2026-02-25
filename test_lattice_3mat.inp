@@ -1,0 +1,59 @@
+c =============================================================================
+c                    Test Lattice Phantom 3 Materials for GHOST
+c =============================================================================
+c     Tamanho da matriz de voxel  : 5 x 5 x 5
+c     Resolução dos voxels        : 0.1cm x 0.1cm x 0.1cm
+c    ---------------------------------------------------------------------------
+c ********************* Cell Cards *********************
+1000 0 1 -2 3 -4 5 -6 fill=999 imp:p=1 imp:e=1 $ cell containing the phantom
+2000 0 -20 11 -40 13 -50 15 lat=1 u=999 imp:p=1 imp:e=1
+     fill=0:4 0:4 0:4
+     1 24r
+     1 4r 1 2 2 2 1 1 2 2 2 1 1 2 2 2 1 1 4r
+     1 4r 1 2 2 2 1 1 2 3 2 1 1 2 2 2 1 1 4r
+     1 4r 1 2 2 2 1 1 2 2 2 1 1 2 2 2 1 1 4r
+     1 24r
+c --- Universe Definitions ---
+1 1 -1.205e-3 -20 11 -40 13 -50 15 u=1 imp:p=1 imp:e=1 $ Air
+2 like 1 but mat=2 rho=-1.000 u=2 imp:p=1 imp:e=1 $ Water
+3 like 1 but mat=3 rho=-1.850 u=3 imp:p=1 imp:e=1 $ Bone
+9000 1 -1.205e-3 -90 #1000 imp:p=1 imp:e=1 $ World
+9999 0 #9000 imp:p =0 imp:e=0 $ Out of World
+
+c ********************* Surface Cards *********************
+c
+c --- Phantom Dimension ---
+c
+1 px 0.05
+2 px 0.45
+3 py 0.05
+4 py 0.45
+5 pz 0.05
+6 pz 0.45
+c --- Voxel Resolution ---
+20 px 0.1
+11 px 0.0
+40 py 0.1
+13 py 0.0
+50 pz 0.1
+15 pz 0.0
+c --- World ---
+90 rpp -10 10.5 -10 10.5 -10 110.5
+c 
+ 
+c ********************* Data Cards *********************
+c 
+c --- Material Definitions ---
+c
+m1       6000.    -0.000124
+         7000.    -0.755268
+         8000.    -0.231781
+         18000.   -0.012827
+c
+m2       1001.    -0.111894
+         8016.    -0.888106
+c
+m3       20000.   -1.000000
+c
+nps 1E6
+c --- End of File ---

@@ -1,0 +1,53 @@
+c =============================================================================
+c                    Test Lattice Phantom for GHOST Importer
+c =============================================================================
+c     Tamanho da matriz de voxel  : 5 x 5 x 5
+c     Resolução dos voxels        : 0.1mm x 0.1mm x 0.1mm
+c    ---------------------------------------------------------------------------
+c ********************* Cell Cards *********************
+1000 0 1 -2 3 -4 5 -6 fill=999 imp:p=1 imp:e=1 $ cell containing the phantom
+2000 0 -20 11 -40 13 -50 15 lat=1 u=999 imp:p=1 imp:e=1
+     fill=0:4 0:4 0:4
+     1 124r
+c --- Universe Definitions ---
+1 1 -1.205e-3 -20 11 -40 13 -50 15 u=1 imp:p=1 imp:e=1 $ Air
+2 like 1 but mat=2 rho=-1.000 u=2 imp:p=1 imp:e=1 $ Water
+9000 1 -1.205e-3 -90 #1000 imp:p=1 imp:e=1 $ World
+9999 0 #9000 imp:p =0 imp:e=0 $ Out of World
+
+c ********************* Surface Cards *********************
+c
+c --- Phantom Dimension ---
+c
+1 px 0.01
+2 px 0.49
+3 py 0.01
+4 py 0.49
+5 pz 0.01
+6 pz 0.49
+c --- Voxel Resolution ---
+20 px 0.1
+11 px 0.0
+40 py 0.1
+13 py 0.0
+50 pz 0.1
+15 pz 0.0
+c --- World ---
+90 rpp -10 10.5 -10 10.5 -10 110.5
+c 
+ 
+c ********************* Data Cards *********************
+c 
+c --- Material Definitions ---
+c
+m1       6000.    -0.000124
+         7000.    -0.755268
+         8000.    -0.231781
+         18000.   -0.012827
+c
+c Water Density (g/cm³) = 1.0
+m2       1001.    -0.111894
+         8016.    -0.888106
+c
+nps 1E6
+c --- End of File ---
