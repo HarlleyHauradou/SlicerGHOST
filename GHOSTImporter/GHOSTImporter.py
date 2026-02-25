@@ -472,7 +472,7 @@ class MCNPParser:
         ny = int(np.ceil((max_y - min_y) / spacing[1]))
         nz = int(np.ceil((max_z - min_z) / spacing[2]))
         
-        if nx <= 0 or ny <= 0 or nz <= 0 or nx*ny*nz > 5e7: # Protect against massive memory allocation
+        if nx <= 0 or ny <= 0 or nz <= 0 or nx*ny*nz > 1e9: # Protect against massive memory allocation (>2GB)
              raise ValueError(f"Calculated dimensions too large or invalid: {nx}x{ny}x{nz}. Check spacing and surfaces.")
              
         voxel_array = np.zeros((nz, ny, nx), dtype=np.uint16)
@@ -486,7 +486,7 @@ class MCNPParser:
             if z_idx % max(1, nz // 20) == 0:
                 progress.setValue(10 + int(70 * (z_idx / total_slices)))
                 slicer.app.processEvents()
-                if progress.wasCanceled():
+                if progress.wasCanceled:
                     raise UserWarning("Import cancelled by user.")
                     
             for y_idx in range(ny):
